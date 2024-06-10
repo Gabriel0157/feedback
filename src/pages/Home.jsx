@@ -1,8 +1,28 @@
-import { CardContainer, IconContainer } from "../styles/Home.styles"
+import { ButtonContainer, CardContainer, IconContainer, ResultContainer } from "../styles/Home.styles"
+
+import iconStarImg from "../assets/icon-star.svg"
+import thankYouImg from "../assets/illustration-thank-you.svg"
+import { useState } from "react";
 
 export default function Home() {
+  const [mostrarResultado, setMostrarResultado] = useState(false)
+  const [feedbackNote, setFeedbackNote] = useState(0)
+
+  function handleFeedbackButtonClick() {
+    const feedback = Number(event.target.innerText)
+
+    setFeedbackNote(feedback)
+    }
+    
+    function handleSubmit() {
+      if (feedbackNote === 0) return
+      
+      setMostrarResultado(true)
+    }
+
   return (
-    <CardContainer>
+    mostrarResultado === false ? (
+      <CardContainer>
       <IconContainer>
         <img src={iconStarImg} alt = "icone de estrela"/>
       </IconContainer>
@@ -11,12 +31,25 @@ export default function Home() {
       <p>Conte-nos como foi nossa ajuda com sua solicitação. Agradecemos muito seu feedback para podermos melhorar nosso atendimento!</p>
 
       <ButtonContainer>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>4</button>
-        <button>5</button>
+        <button onClick={handleFeedbackButtonClick}>1</button>
+        <button onClick={handleFeedbackButtonClick}>2</button>
+        <button onClick={handleFeedbackButtonClick}>3</button>
+        <button onClick={handleFeedbackButtonClick}>4</button>
+        <button onClick={handleFeedbackButtonClick}>5</button>
       </ButtonContainer>
+
+      <button onClick={handleFeedbackButtonClick}>Enviar</button>
     </CardContainer>
+    ) : (
+      <CardContainer>
+        <img src={thankYouImg} alt="imagem de agradecimento" />
+
+        <ResultContainer>Você selecionou {feedbackNote} de 5</ResultContainer>
+
+        <h1>Obrigado!</h1>
+
+        <p>Agradecemos por dedicar um momento para nos avaliar. Se precisar de mais suporte, não hesite em entrar em contato</p>
+      </CardContainer>
+    )
   )
 }
