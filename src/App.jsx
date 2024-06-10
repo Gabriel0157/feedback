@@ -6,14 +6,10 @@ import { theme } from "./styles/theme"
 import { GlobalStyle } from "./styles/global"
 
 const router = createBrowserRouter([
- {
-  path: "/",
-  element: <Home/>
- },
-
- {
-
- }
+  {
+    path: "/",
+    element: <Home />
+  }
 ])
 
 export function App() {
